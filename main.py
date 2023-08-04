@@ -37,8 +37,9 @@ def initial_population(size):
 
 # calculate the fitness of a chromosome (lower number is better)
 def fitness(c):
-    fit = len(c) - len(set(c))
-    misplaced = set()
+    cset = list(set(c))
+    init = [x for x in c if x not in cset]
+    misplaced = set(init)
     for i in range(8):
         g = c[i]
         for j in range(i + 1, 8):
@@ -51,8 +52,7 @@ def fitness(c):
                 misplaced.add(j)
             if g - (j - i) == c[j]:
                 misplaced.add(j)
-    fit += len(misplaced)
-    return fit
+    return len(misplaced)
 
 
 def random_parents(parents):
