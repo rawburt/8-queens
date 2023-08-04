@@ -55,6 +55,7 @@ def fitness(c):
     return fit
 
 
+# select two random and unique parents
 def random_parents(parents):
     psize = len(parents)
     p1 = randrange(0, psize)
@@ -91,6 +92,7 @@ def average_fitness(population):
     return sum(p) // l
 
 
+# display each chromosome in the population
 def print_population(population):
     fit_stats = {}
     for p in population:
@@ -106,6 +108,7 @@ def print_population(population):
     print()
 
 
+# run the genetical algorithm
 def run(population_size, num_iterations, mutation_pct):
     population = initial_population(population_size)
     population = [(fitness(c), c) for c in population]
@@ -128,6 +131,7 @@ def run(population_size, num_iterations, mutation_pct):
     return results
 
 
+# parse command line arguments
 parser = ArgumentParser(
     prog="main.py",
     description="Find solutions to 8 Queen puzzle using a genetic algorithm.",
@@ -180,6 +184,7 @@ print()
 
 results = run(int(args.population_size), int(args.iterations), int(args.mutation_pct))
 
+# construct the fitness graph if requested
 if args.graph:
     print()
     print("Saving graph.")
