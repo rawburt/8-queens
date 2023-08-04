@@ -37,9 +37,13 @@ def initial_population(size):
 
 # calculate the fitness of a chromosome (lower number is better)
 def fitness(c):
-    cset = list(set(c))
-    init = [x for x in c if x not in cset]
-    misplaced = set(init)
+    seen = set()
+    misplaced = set()
+    for g in c:
+        if g in seen:
+            misplaced.add(g)
+        else:
+            seen.add(g)
     for i in range(8):
         g = c[i]
         for j in range(i + 1, 8):
